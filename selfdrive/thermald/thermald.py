@@ -142,7 +142,7 @@ def handle_fan_tici(max_cpu_temp, fan_speed, ignition):
   controller.pos_limit = -(30 if ignition else 0)
 
   fan_pwr_out = -int(controller.update(
-                    setpoint=(75 if ignition else 68),
+                    setpoint=(75 if ignition else (OFFROAD_DANGER_TEMP - 2)),
                     measurement=max_cpu_temp,
                     feedforward=interp(max_cpu_temp, [60.0, 100.0], [0, -80])
                   ))
